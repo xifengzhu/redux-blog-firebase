@@ -1,5 +1,3 @@
-import { firebaseRef } from "../initFirebase"
-
 // 统一声明默认State
 export default {
   post: {
@@ -17,6 +15,6 @@ export default {
     errorMessage: '',
     isFetching: false,
     isAuth: false,
-    currentUser: firebaseRef.auth().currentUser
+    currentUser: {}
   }
 };
