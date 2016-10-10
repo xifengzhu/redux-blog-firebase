@@ -1,8 +1,10 @@
 import {
   POST_QERUEST, POST_SUCCESS, POST_FAILURE,
   POSTS_QERUEST, POSTS_SUCCESS, POSTS_FAILURE
-} from './../constants/actionTypes';
-import { FirebaseBaseRef } from "../initFirebase";
+} from './../constants/actionTypes'
+import { push } from 'react-router-redux';
+import { FirebaseBaseRef } from "../initFirebase"
+import firebase from 'firebase'
 
 const postsFirebaseRef = FirebaseBaseRef.ref("posts")
 
@@ -13,8 +15,9 @@ export function fetchPost(id) {
       let post = snapshot.val()
       dispatch({type: POST_SUCCESS, post })
     }, (errorObject) => {
-      dispatch({type: POST_FAILURE, error: errorObject.message});
-      console.log("The read failed: " + errorObject.code);
+      const errorMessage = errorObject.message
+      dispatch({type: POST_FAILURE, errorMessage});
+      console.log("The read failed: " + errorMessage);
     })
   }
 }
@@ -25,13 +28,14 @@ export function createPost(params) {
     const newPostRef = postsFirebaseRef.push()
     return newPostRef.set({
       id: newPostRef.key,
-      created_at: Firebase.ServerValue.TIMESTAMP,
+      created_at: firebase.database.ServerValue.TIMESTAMP,
       ...params
-    }, (error) => {
-      if(error){
-        dispatch({type: POSTS_SUCCESS, posts })
+    }, (errorMessage) => {
+      if(!errorMessage){
+        dispatch({type: POSTS_SUCCESS })
+        dispatch(push(`/posts/${ newPostRef.key }`))
       } else {
-        dispatch({type: POSTS_FAILURE, error: error});
+        dispatch({type: POSTS_FAILURE, errorMessage});
       }
     })
   }
@@ -45,8 +49,9 @@ export function fetchPosts(category) {
       const posts = Object.keys(postsObj).map(key => postsObj[key])
       dispatch({type: POSTS_SUCCESS, posts })
     }, (errorObject) => {
-      dispatch({type: POSTS_FAILURE, error: errorObject.message});
-      console.log("The read failed: " + errorObject.code);
+      const errorMessage = errorObject.message
+      dispatch({type: POSTS_FAILURE, errorMessage});
+      console.log("The read failed: " + errorMessage);
     })
   }
 }

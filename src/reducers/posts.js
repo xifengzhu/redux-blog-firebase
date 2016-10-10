@@ -17,7 +17,7 @@ export default function post(state = initialState.posts, action) {
     case POSTS_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        errorMessage: action.message
+        errorMessage: action.errorMessage
       });
     default:
       return state;
