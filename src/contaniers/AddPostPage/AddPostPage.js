@@ -26,7 +26,12 @@ class AddPostPage extends Component {
     const summary = this.state.summary.trim();
     if(title && content && summary) {
       // submit to server
-      this.props.createPost({title: title, content: content, summary: summary})
+      this.props.createPost({
+        title: title,
+        content: content,
+        summary: summary,
+        category: category
+      })
     }
   }
 
@@ -79,18 +84,26 @@ class AddPostPage extends Component {
         </div>
 
         <div className="post-content">
-          <div className="col-md-6 edit-view">
-            <label>content</label>
-            <textarea
-              className="form-control"
-              placeholder="content"
-              value={ this.state.content }
-              onChange={ this.handleContentChange } >
-            </textarea>
-          </div>
-          <div className="col-md-6 preview">
-            <label>preview</label>
-            <ReactMarkdown source={this.state.content} />
+          <ul className="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" className="active">
+              <a href="#Write" role="tab" data-toggle="tab">Write</a>
+            </li>
+            <li role="presentation">
+              <a href="#Preview" role="tab" data-toggle="tab">Preview</a>
+            </li>
+          </ul>
+          <div className="tab-content">
+            <div role="tabpanel" className="tab-pane fade in active" id="Write">
+              <textarea
+                className="form-control"
+                placeholder="content"
+                value={ this.state.content }
+                onChange={ this.handleContentChange } >
+              </textarea>
+            </div>
+            <div role="tabpanel" className="tab-pane fade" id="Preview">
+              <div className="preview-content"><ReactMarkdown source={this.state.content} /></div>
+            </div>
           </div>
         </div>
         <button type="submit"

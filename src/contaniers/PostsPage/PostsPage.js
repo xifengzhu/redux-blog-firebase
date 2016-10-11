@@ -45,7 +45,7 @@ class PostsPage extends Component {
               </span>
               <span className="margin-left-20" title="发布时间">
                 <i className="fa fa-clock-o"></i>
-                <span className="publish-time">{ post.created_at || "2016-09-11" }</span>
+                <span className="publish-time">{ post.created_at }</span>
               </span>
               <p className="post-summary"> { post.summary } </p>
             </div>

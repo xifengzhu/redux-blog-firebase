@@ -26,33 +26,24 @@ class Navbar extends Component {
 
   render() {
     const isAuth = this.props.isAuth
+    const linkTo = isAuth ? "/posts/new" : "/"
+    const linkText = isAuth ? "Add Post" : "Login"
     return (
       <header>
         <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="#">
+              <Link to={ "/" } className="navbar-brand">
                 xifengzhu's Blog
-              </a>
+              </Link>
             </div>
-            { isAuth &&
-              <ul className="nav navbar-nav pull-right">
-                <li>
-                  <Link to={ "/posts/new" }>
-                    Add Post
-                  </Link>
-                </li>
-              </ul>
-            }
-            { !isAuth &&
-              <ul className="nav navbar-nav pull-right">
-                <li>
-                  <Link to={ "/login" }>
-                    Login
-                  </Link>
-                </li>
-              </ul>
-            }
+            <ul className="nav navbar-nav pull-right">
+              <li>
+                <Link to={ linkTo }>
+                  { linkText }
+                </Link>
+              </li>
+            </ul>
           </div>
         </nav>
       </header>
