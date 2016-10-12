@@ -15,15 +15,17 @@ class AddPostPage extends Component {
     this.state = {
       title: "",
       content: "",
+      summary: "",
       category: ""
     }
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    const title = this.state.title.trim();
-    const content = this.state.content.trim();
-    const summary = this.state.summary.trim();
+    const title = this.state.title.trim()
+    const content = this.state.content.trim()
+    const summary = this.state.summary.trim()
+    const category = this.state.category.trim()
     if(title && content && summary) {
       // submit to server
       this.props.createPost({
@@ -36,24 +38,24 @@ class AddPostPage extends Component {
   }
 
   handleTitleChange(event) {
-    this.setState({title: event.target.value});
+    this.setState({title: event.target.value})
   }
 
   handleContentChange(event) {
-    this.setState({content: event.target.value});
+    this.setState({content: event.target.value})
   }
 
   handleSummaryChange(event) {
-    this.setState({summary: event.target.value});
+    this.setState({summary: event.target.value})
   }
 
   handleCategoryChange(event) {
-    this.setState({category: event.target.value});
+    this.setState({category: event.target.value})
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="new-post">
         <div className="form-group">
           <label>Post title</label>
           <input type="text"
@@ -107,7 +109,7 @@ class AddPostPage extends Component {
           </div>
         </div>
         <button type="submit"
-                className="btn btn-default"
+                className="btn btn-default btn-primary"
                 disabled={!(this.state.title && this.state.content)}>
           Submit
         </button>
@@ -124,7 +126,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps() {
   return {
-  };
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPostPage)

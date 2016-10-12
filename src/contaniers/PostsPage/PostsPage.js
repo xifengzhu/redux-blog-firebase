@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchPosts } from './../../actions/post'
+import moment from 'moment'
+
 import './PostsPage.scss'
 
 class PostsPage extends Component {
@@ -45,7 +47,7 @@ class PostsPage extends Component {
               </span>
               <span className="margin-left-20" title="发布时间">
                 <i className="fa fa-clock-o"></i>
-                <span className="publish-time">{ post.created_at }</span>
+                <span className="publish-time">{ moment(post.created_at).format("YYYY-MM-DD") }</span>
               </span>
               <p className="post-summary"> { post.summary } </p>
             </div>

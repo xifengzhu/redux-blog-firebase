@@ -1,8 +1,9 @@
-import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
-import './App.scss';
-import Navbar from "./../Navbar/Navbar";
-import { Link } from 'react-router';
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+import './App.scss'
+import Navbar from "./../Navbar/Navbar"
+import LoadingBar from 'react-redux-loading-bar'
+import { Link } from 'react-router'
 
 class App extends Component {
   static propTypes = {
@@ -51,6 +52,7 @@ class App extends Component {
             </li>
           </ul>
         </div>
+        <LoadingBar style={{ backgroundColor: '#19aa8d', height: '5px', zIndex: 9999, top: '50px'  }} />
         <div id="page-content-wrapper">
           <div className="container-fluid">
             <div className="row">
