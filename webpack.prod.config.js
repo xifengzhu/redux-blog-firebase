@@ -14,6 +14,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'blog',
+      inject: false,
       template: './src/index.html'
     })
   ],
