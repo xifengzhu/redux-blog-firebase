@@ -23,6 +23,10 @@ class PostsPage extends Component {
 
   componentWillReceiveProps(NextProps) {
     console.log('componentWillReceiveProps', NextProps)
+    if(this.props.location.query != NextProps.location.query){
+      const category = NextProps.location.query.category
+      this.props.fetchPosts(category)
+    }
   }
 
   componentWillUnmount() {

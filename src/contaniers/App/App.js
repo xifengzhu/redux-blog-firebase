@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     const MENU_ITEMS = [
       { name: "全部分类",
-        link: "/posts?category=all",
+        link: "/posts",
         iconClass: "fa fa-home fa-fw"
       },
       { name: "javascript",

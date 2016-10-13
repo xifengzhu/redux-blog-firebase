@@ -52,9 +52,15 @@ export function fetchPosts(category) {
   return dispatch => {
     dispatch({type: POSTS_QERUEST})
     dispatch(showLoading())
-    return postsFirebaseRef.on("value", (snapshot) => {
+    const ref = category ? postsFirebaseRef.orderByChild("category").equalTo(category) : postsFirebaseRef
+    console.log(`category: ${category}`)
+    return ref.on("value", (snapshot) => {
       let postsObj = snapshot.val()//.filter((post) => post != undefined)
-      const posts = Object.keys(postsObj).map(key => postsObj[key])
+      if(postsObj){
+        var posts = Object.keys(postsObj).map(key => postsObj[key])
+      } else {
+        var posts = []
+      }
       dispatch({type: POSTS_SUCCESS, posts })
       dispatch(hideLoading())
     }, (errorObject) => {
