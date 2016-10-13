@@ -27,6 +27,11 @@ class App extends Component {
       { name: "others",
         link: "/posts?category=others",
         iconClass: "fa fa-book fa-fw"
+      },
+      {
+        name: "New Post",
+        link: "/posts/new",
+        iconClass: "fa fa-book fa-fw"
       }
     ]
     return (

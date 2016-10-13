@@ -13,6 +13,6 @@ export const LOGIN_QERUEST = 'LOGIN_QERUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-
-
-
+export const SIGNUP_QERUEST = 'SIGNUP_QERUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';

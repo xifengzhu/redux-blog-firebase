@@ -26,15 +26,16 @@ class Navbar extends Component {
 
   render() {
     const isAuth = this.props.isAuth
-    const linkTo = isAuth ? "/posts/new" : "/"
-    const linkText = isAuth ? "Add Post" : "Login"
+    const currentUser = this.props.currentUser
+    const linkTo = isAuth ? "/" : "/login"
+    const linkText = isAuth ? `${currentUser.displayName}` : "Login"
     return (
       <header>
         <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div className="container-fluid">
             <div className="navbar-header">
               <Link to={ "/" } className="navbar-brand">
-                xifengzhu's Blog
+                Blog
               </Link>
             </div>
             <ul className="nav navbar-nav pull-right">
@@ -56,7 +57,8 @@ Navbar.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    currentUser: state.auth.currentUser
   };
 }
 
